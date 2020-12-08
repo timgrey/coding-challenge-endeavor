@@ -53,18 +53,13 @@ export default {
       type: Array,
       default: () => [],
     },
-    numberOfPreviousIssues: {
-      type: Number,
-      required: true,
-      validator: (n) => n === 12 || n === 6,
-    }
   },
   computed: {
     latestIssue() {
       return this.magazineCovers[0]
     },
     previousIssues() {
-      if (this.numberOfPreviousIssues === 12) {
+      if ( this.$store.getters.previousIssueCount === 12) {
         return this.magazineCovers.slice(1, 13)
       }
       return this.magazineCovers.slice(1, 7)

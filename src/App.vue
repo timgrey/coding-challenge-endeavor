@@ -5,7 +5,7 @@
       :header="magazineTitle"
       :magazine-covers="magazineCovers"
       :buttons="buttons"
-      :number-of-previous-issues="12"
+      :number-of-previous-issues="6"
     />
   </div>
 </template>
