@@ -53,6 +53,11 @@ export default {
     buttons: {
       type: Array,
       default: () => [],
+    },
+    numberOfPreviousIssues: {
+      type: Number,
+      required: true,
+      validator: (n) => n === 12 || n === 6,
     }
   },
   computed: {
@@ -60,14 +65,14 @@ export default {
       return this.magazineCovers[0]
     },
     previousIssues() {
-      if (this.magazineCovers.length > 12) {
+      if (this.numberOfPreviousIssues === 12) {
         return this.magazineCovers.slice(1, 13)
       }
       return this.magazineCovers.slice(1, 7)
     },
     coverSectionHeight() {
       return `height: ${this.previousIssues.length === 6 ? '640' : '675'}px;`
-    }
+    },
   },
   methods: {
     navigate(url) {
@@ -164,4 +169,5 @@ footer > .button {
 footer > .button:hover {
   opacity: 0.8;
 }
+
 </style>

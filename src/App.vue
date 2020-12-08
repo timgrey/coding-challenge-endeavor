@@ -5,6 +5,7 @@
       :header="magazineTitle"
       :magazine-covers="magazineCovers"
       :buttons="buttons"
+      :number-of-previous-issues="12"
     />
   </div>
 </template>
@@ -119,6 +120,6 @@ export default {
     justify-content: center;
   }
   .content {    
-    width: 1200px;
+    max-width: 1200px;
   }
 </style>
