@@ -6,7 +6,6 @@
     
     <section 
       class="covers"
-      :style="coverSectionHeight"
     >
       <div class="latest-issue">
         <img :src="latestIssue.imgAssetURL">
@@ -87,6 +86,7 @@ export default {
 
 * {
   font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
 }
 
 .wrapper {
@@ -108,7 +108,7 @@ header > h3 {
 }
 
 h3 {
-  margin: 8px 0;
+  margin: 0 0 8px 0;
 }
 
 .covers {
@@ -123,11 +123,11 @@ h3 {
 }
 
 img {
-  height: 100%;
+  width: 100%;
 }
 
 .covers > .previous-issues {
-  width: 58%;
+  width: 57%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -137,20 +137,12 @@ img {
   margin-bottom: 16px;
   margin-left: 16px;
   width: calc(25% - 16px);
-  height: calc((100% - 32px)/3);
 }
 
 .previous-issues > .cover-6 {
   margin-left: 16px;
   margin-bottom: 32px;
   width: calc((100% - 48px)/3);
-  height: calc(50% - 16px);
-}
-
-.cover-12,
-.cover-6 {
-  display: flex;
-  flex-direction: row-reverse;
 }
 
 footer {
@@ -170,4 +162,7 @@ footer > .button:hover {
   opacity: 0.8;
 }
 
+@media only screen and (max-width: 1200px) {
+  
+}
 </style>
