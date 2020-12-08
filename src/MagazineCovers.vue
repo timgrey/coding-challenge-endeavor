@@ -7,11 +7,17 @@
     <section 
       class="covers"
     >
-      <div class="latest-issue">
+      <div
+        class="latest-issue"
+        :style="lastestIssueWidth"
+      >
         <img :src="latestIssue.imgAssetURL">
       </div>
 
-      <div class="previous-issues">
+      <div
+        class="previous-issues"
+        :style="previousIssuesWidth"
+      >
         <div
           v-for="cover in previousIssues"
           :key="cover.publishDate"
@@ -56,16 +62,21 @@ export default {
   },
   computed: {
     latestIssue() {
-      return this.magazineCovers[0]
+      return this.magazineCovers[0];
     },
     previousIssues() {
       if ( this.$store.getters.previousIssueCount === 12) {
         return this.magazineCovers.slice(1, 13)
       }
-      return this.magazineCovers.slice(1, 7)
+      return this.magazineCovers.slice(1, 7);
     },
-    coverSectionHeight() {
-      return `height: ${this.previousIssues.length === 6 ? '640' : '675'}px;`
+    lastestIssueWidth() {
+      const count = this.$store.getters.previousIssueCount
+      return `width: ${count === 12 ? '42' : '40'}%`;
+    },
+    previousIssuesWidth() {
+      const count = this.$store.getters.previousIssueCount
+      return `width: ${count === 12 ? '57' : '60'}%`;
     },
   },
   methods: {
@@ -87,6 +98,7 @@ export default {
 .wrapper {
   display: flex;
   flex-direction: column;
+  margin: 32px;
 }
 
 header {
@@ -132,6 +144,7 @@ img {
   margin-bottom: 16px;
   margin-left: 16px;
   width: calc(25% - 16px);
+  min-width: 50px;
 }
 
 .previous-issues > .cover-6 {
@@ -157,7 +170,38 @@ footer > .button:hover {
   opacity: 0.8;
 }
 
-@media only screen and (max-width: 1200px) {
-  
+@media only screen and (max-width: 900px) {
+  .covers {
+    flex-direction: column;    
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .previous-issues {
+    width: 100% !important;
+    margin-top: 16px;
+  }
+
+  .latest-issue {
+    width: 100% !important;
+  }
+
+  .cover-12,
+  .cover-6 {
+    margin-left: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .cover-12 {
+    width: calc((100%/3) - 16px) !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .cover-12,
+  .cover-6 {
+    width: calc((100%/2) - 16px) !important;
+  }
 }
 </style>
