@@ -4,7 +4,10 @@
       <h3>{{ header }}</h3>
     </header>
     
-    <section class="covers">
+    <section 
+      class="covers"
+      :style="coverSectionHeight"
+    >
       <div class="latest-issue">
         <img :src="latestIssue.imgAssetURL">
       </div>
@@ -62,6 +65,9 @@ export default {
       }
       return this.magazineCovers.slice(1, 7)
     },
+    coverSectionHeight() {
+      return `height: ${this.previousIssues.length === 6 ? '640' : '675'}px;`
+    }
   },
   methods: {
     navigate(url) {
@@ -87,7 +93,6 @@ header {
   width: 100%;
   background: black;
   color: white;
-
 }
 
 header > h3 {
@@ -105,7 +110,6 @@ h3 {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 675px;
   margin-top: 16px;
 }
 
@@ -120,24 +124,28 @@ img {
 .covers > .previous-issues {
   width: 58%;
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .previous-issues > .cover-12 {
+  margin-bottom: 16px;
+  margin-left: 16px;
   width: calc(25% - 16px);
   height: calc((100% - 32px)/3);
 }
 
 .previous-issues > .cover-6 {
+  margin-left: 16px;
+  margin-bottom: 32px;
   width: calc((100% - 48px)/3);
-  height: calc(50% - 8px);
+  height: calc(50% - 16px);
 }
 
 .cover-12,
 .cover-6 {
-  margin-left: 16px;
-  margin-bottom: 16px;
-  background: black;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 footer {
